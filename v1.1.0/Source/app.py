@@ -1,8 +1,5 @@
 import tkinter as tk
 import threading
-import win32con
-import win32api
-import os
 import pystray
 from tkinter.filedialog import *
 from tkinter.messagebox import *
@@ -13,13 +10,10 @@ from lib.theme import *
 from PIL import Image
 from pystray import MenuItem, Menu
 from ttkbootstrap import *
-
-def addfile2autorun(path):
-     runpath = "Software\Microsoft\Windows\CurrentVersion\Run"
-     hKey = win32api.RegOpenKeyEx(win32con.HKEY_CURRENT_USER, runpath, 0, win32con.KEY_SET_VALUE)
-     (filepath, filename) = os.path.split(path)
-     win32api.RegSetValueEx(hKey, "WindowsInit", 0, win32con.REG_SZ, path)
-     win32api.RegCloseKey(hKey)
+import os
+import sys
+import win32api
+import win32con
 
 def quit_window(icon: pystray.Icon):
     m.stop = True
@@ -86,7 +80,9 @@ threading.Thread(target = icon.run, daemon = True).start()
 m = monitor()
 m.stop = False
 threading.Thread(target = m.monitor).start()
-addfile2autorun(__file__)
+key = win32api.RegOpenKey(win32con.HKEY_CURRENT_USER, 'Software\Microsoft\Windows\CurrentVersion\Run', 0, win32con.KEY_ALL_ACCESS)
+win32api.RegSetValueEx(key, "Unvirus", 0, win32con.REG_SZ, sys.argv[0])
+win32api.RegCloseKey(key)
 root.config(menu = menubar)
 on_exit()
 root.mainloop()
