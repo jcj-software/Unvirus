@@ -9,9 +9,10 @@ from tkinter.messagebox import *
 from lib.core import *
 from lib.lang import *
 from lib.monitor import *
+from lib.theme import *
 from PIL import Image
 from pystray import MenuItem, Menu
-
+from ttkbootstrap import *
 
 def addfile2autorun(path):
      runpath = "Software\Microsoft\Windows\CurrentVersion\Run"
@@ -33,7 +34,9 @@ def show_window():
 def on_exit():
     root.withdraw()
 
-root = tk.Tk()
+
+style = Style(theme = 'cosmo')
+root = style.master
 root.title("Unvirus-1")
 root.geometry("400x300")
 root.iconbitmap('assets/icon.ico')
@@ -57,6 +60,7 @@ def checkFileFunc():
             os.remove(filePath.get())
     else:
         showinfo('Unvirus', filePath.get() + '\n' + lang_load.lang_FileStatus + lang_load.lang_Undetected)
+
 # Menubar Loading
 menubar = tk.Menu(root)
 Language = tk.Menu(menubar, tearoff = 0)
@@ -68,15 +72,15 @@ Language.add_command(label = '中文', command = lang_load._switchChinese)
 ButtonFrame = tk.Frame(root)
 ButtonFrame.pack(side = "bottom")
 openFile = tk.Button(ButtonFrame, text = lang_load.lang_OpenFile, command = openFileFunc)
-openFile.pack(side = "left")
+openFile.pack(side = "left", padx = 25)
 checkFile = tk.Button(ButtonFrame, text = lang_load.lang_CheckFile, command = checkFileFunc)
-checkFile.pack(side = "right")
+checkFile.pack(side = "right", padx = 25)
 
 # File Path Loading
 filePathFrame = tk.Frame(root)
 filePathFrame.pack(side = "bottom")
 filePath = tk.Entry(filePathFrame, width = 50)
-filePath.pack(side = "top")
+filePath.pack()
 
 threading.Thread(target = icon.run, daemon = True).start()
 m = monitor()
