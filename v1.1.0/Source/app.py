@@ -42,8 +42,8 @@ icon = pystray.Icon("icon", image, "Unvirus", menu)
 
 
 def openFileFunc():
-    filePath.delete(0, END)
-    filePath.insert(0, askopenfilename())
+    filename = askopenfilename()
+    filePath.insert(0, filename)
     
 def checkFileFunc():
     if CheckFile(filePath.get()) == True:

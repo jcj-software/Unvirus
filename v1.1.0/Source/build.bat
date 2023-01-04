@@ -1,3 +1,3 @@
 pip install pyinstaller
-pyinstaller -w app.py --icon="assets/icon.ico" --collect-all ttkbootstrap
+pyinstaller --icon="assets/icon.ico" -w app.py
 pause
