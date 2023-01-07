@@ -105,7 +105,7 @@ def startToolFunc():
         
 
 root = style.master
-root.title("Unvirus-1")
+root.title("Unvirus")
 root.geometry("500x300")
 root.iconbitmap('assets/icon.ico')
 root.protocol('WM_DELETE_WINDOW', on_exit)
