@@ -1,0 +1,41 @@
+name: 问题询问
+description: 例如问题询问专用通道
+title: "[Question]: "
+labels: ["question"]
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        询问问题的好地方！
+        （感谢您没有选择bug反馈！）
+  - type: input
+    id: contact
+    attributes:
+      label: 联系方式
+      description: 通过联系方式告诉您问题答案！
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: input
+    id: question
+    attributes:
+      label: 要询问我的问题？
+      description: 告诉我，您在使用Unvirus软件时想询问的问题？
+      placeholder: ex. 主题选择菜单的原理是什么？[这位使用者厉害了！(来自作者的调侃)]
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: 您在运行那个版本？
+      description: 告诉我，您的运行版本从而获取代码告诉您答案。
+      options:
+        - v1.0.0
+        - v1.1.0
+        - v1.2.0
+        - v1.2.1
+        - v1.2.2
+    validations:
+      required: true
