@@ -1,0 +1,48 @@
+name: Bug反馈
+description: 例如崩溃、卡死等情况反馈专用通道
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您能抽出时间来进行bug反馈！
+  - type: input
+    id: contact
+    attributes:
+      label: 联系方式
+      description: 通过联系方式告诉您bug修复状态！
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: input
+    id: what-happened
+    attributes:
+      label: 发生了什么？
+      description: 告诉我，您在使用Unvirus软件中发生了什么情况？
+      placeholder: ex. 崩溃、卡死
+    validations:
+      required: true
+  - type: textarea
+    id: how-happened-too
+    attributes:
+      label: 如何重现此情况？
+      description: 告诉我，您在使用Unvirus软件中做了什么导致出现bug？
+      placeholder: ex. 反复开关设置按钮[怎么那么无聊……(来自作者的调侃)]
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: 您在运行那个版本？
+      description: 告诉我，您的运行版本从而进行逆向分析。
+      options:
+        - v1.0.0
+        - v1.1.0
+        - v1.2.0
+        - v1.2.1
+        - v1.2.2
+    validations:
+      required: true
