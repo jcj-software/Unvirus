@@ -12,8 +12,8 @@
 name: "CodeQL"
 
 on:
-  push:
-    branches: [ "master" ]
+  release:
+    types: [published]
 
 jobs:
   analyze:
