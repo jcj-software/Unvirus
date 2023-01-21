@@ -1,0 +1,42 @@
+name: 内测版本专用反馈通道
+description: 例如崩溃、卡死等情况发生在内测版本的反馈专用通道
+title: "[Inside]: "
+labels: ["inside"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您能抽出时间来进行反馈！
+  - type: input
+    id: contact
+    attributes:
+      label: 联系方式
+      description: 通过联系方式告诉您bug修复状态！
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: input
+    id: what-happened
+    attributes:
+      label: 发生了什么？
+      description: 告诉我，您在使用内测版时发生了什么情况？
+      placeholder: ex. 崩溃、卡死
+    validations:
+      required: true
+  - type: textarea
+    id: how-happened-too
+    attributes:
+      label: 如何重现此情况？
+      description: 告诉我，您在使用内测版中做了什么导致出现bug？
+      placeholder: ex. 反复开关设置按钮[怎么那么无聊……(来自作者的调侃)]
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: 您在运行哪个内测版本？
+      description: 告诉我，您的内测运行版本从而进行逆向分析。
+      options:
+        - Inside-Latest
+    validations:
+      required: true
