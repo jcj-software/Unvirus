@@ -2,8 +2,6 @@ name: 问题询问
 description: 例如问题询问专用通道
 title: "[Question]: "
 labels: ["question"]
-assignees:
-  - octocat
 body:
   - type: markdown
     attributes:
