@@ -128,11 +128,6 @@ def sha256(value):
     hashObj = hashlib.sha256()
     hashObj.update(value.encode('utf-8'))
     return hashObj.hexdigest()
-    
-def unlookFunc():
-    key = simpledialog.askstring(title = 'Unvirus', prompt = 'Key: ')
-    if sha256(key) == "":
-        
 
 root = style.master
 root.title("Unvirus")
@@ -168,7 +163,6 @@ Theme.add_command(label = 'Darkly', command = lambda: theme("darkly"))
 Theme.add_command(label = 'Cyborg', command = lambda: theme("cyborg"))
 Theme.add_command(label = 'Superhero', command = lambda: theme("superhero"))
 Theme.add_command(label = 'Solar', command = lambda: theme("solar"))
-menubar.add_command(label = '内部版本解锁(Inside Version Unlock)', command = unlookFunc)
 
 # Toggles Loading
 ToggleFrame1 = Frame(root)
