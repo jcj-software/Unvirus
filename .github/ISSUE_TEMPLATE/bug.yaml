@@ -34,7 +34,7 @@ body:
   - type: dropdown
     id: version
     attributes:
-      label: 您在运行那个版本？
+      label: 您在运行哪个版本？
       description: 告诉我，您的运行版本从而进行逆向分析。
       options:
         - v1.0.0
