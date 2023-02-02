@@ -1,1 +1,0 @@
-user_themes={'theme': {'type': 'light', 'colors': {'primary': '#1e86f2', 'secondary': '#7e8081', 'success': '#2fb195', 'info': '#9954bb', 'warning': '#ffb71d', 'danger': '#ff4b56', 'bg': '#eaeaea', 'fg': '#262938', 'selectbg': '#7e8081', 'selectfg': '#ffffff', 'border': '#dcdcdc', 'inputfg': '#373a3c', 'inputbg': '#fdfdfe', 'light': '#F8F9FA', 'dark': '#373A3C'}}}
