@@ -1,3 +1,3 @@
 python -m pip install pyinstaller
-pyinstaller --icon="assets/icon.ico" -w app.py --collect-all yara-python
+pyinstaller app.py -w --icon="assets/icon.ico"
 pause
