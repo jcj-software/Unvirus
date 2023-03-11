@@ -16,6 +16,8 @@ import pystray
 import PIL.Image as Img
 from pystray import MenuItem, Menu
 
+import glob
+import getpass
 import sys
 import pickle
 import win32api
@@ -88,13 +90,9 @@ def checkFileFunc():
     else:
         showinfo('Unvirus', filePath.get() + '\n' + lang_load.lang_FileStatus + lang_load.lang_Undetected)
 
-def fullScanFunc(func):
-    s.stop = False
-    threading.Thread(target = lambda: s.scan(func)).start()
-    startProgress()
-    
-def fullScanStopFunc():
-    s.stop = True
+def fullScanFunc():
+    threading.Thread(target = lambda: s.scan(lambda: ProgressBar.stop())).start()
+    ProgressBar.start(10)
     
 def monitorToolFunc():
     if monitorVar.get() == 1:
@@ -119,12 +117,29 @@ def startToolFunc():
         win32api.RegCloseKey(key)
     with open('setting.dat', 'wb') as f:
         pickle.dump(setting, f)
-        
-def startProgress():
-    ProgressBar.start(10)
-
-def stopProgress():
-    ProgressBar.stop()
+    
+def ClearTrashThread():
+    for filename in glob.glob(r'C:/Users/' + getpass.getuser() + r'/AppData/Local/Temp/*.*'):
+        try:
+            os.remove(filename)
+        except:
+            pass
+    for filename in glob.glob(r'C:/Users/' + getpass.getuser() + r'/Local Settings/Temp/*.*'):
+        try:
+            os.remove(filename)
+        except:
+            pass
+    for filename in glob.glob(r'C:/Windows/Temp/*.*'):
+        try:
+            os.remove(filename)
+        except:
+            pass
+    showinfo("Unvirus", lang_load.lang_ClearTrashOver)
+    ProgressBar1.stop()
+    
+def ClearTrash():
+    ProgressBar1.start(10)
+    threading.Thread(target = ClearTrashThread).start()
     
 root = style.master
 root.title("Unvirus")
@@ -174,20 +189,18 @@ startTool = Checkbutton(ToggleFrame1, text = lang_load.lang_Start, variable = st
 startTool.pack(side = "right")
 
 Separator1 = Separator(root, orient = HORIZONTAL)
-Separator1.pack(side = "top", padx = 10, pady = 5, fill = X)
+Separator1.pack(side = "top", padx = 10, pady = 3, fill = X)
 
 # Full Scan Loading
 fullScanFrame = Frame(root)
 fullScanFrame.pack(side = "bottom", pady = 10)
 ProgressBar = Progressbar(fullScanFrame, orient = HORIZONTAL, length = 350, mode = 'indeterminate')
 ProgressBar.pack()
-fullScan = Button(fullScanFrame, text = lang_load.lang_Full, command = lambda: fullScanFunc(stopProgress), style = "Outline.TButton")
-fullScan.pack(side = "left", padx = 25)
-stop = Button(fullScanFrame, text = lang_load.lang_Stop, command = fullScanStopFunc, style = "Outline.TButton")
-stop.pack(side = "right", padx = 25)
+fullScan = Button(fullScanFrame, text = lang_load.lang_Full, command = fullScanFunc, style = "Outline.TButton")
+fullScan.pack(padx = 25)
 
 Separator2 = Separator(root, orient = HORIZONTAL)
-Separator2.pack(side = "bottom", padx = 10, pady = 5, fill = X)
+Separator2.pack(side = "bottom", padx = 10, pady = 3, fill = X)
 
 # Sigle File Scanning Loading
 SingleFileScanningFrame = Frame(root)
@@ -198,6 +211,17 @@ openFile = Button(SingleFileScanningFrame, text = lang_load.lang_OpenFile, comma
 openFile.pack(side = "left", padx = 25)
 checkFile = Button(SingleFileScanningFrame, text = lang_load.lang_CheckFile, command = checkFileFunc, style = "Outline.TButton")
 checkFile.pack(side = "right", padx = 25)
+
+Separator3 = Separator(root, orient = HORIZONTAL)
+Separator3.pack(side = "bottom", padx = 10, pady = 3, fill = X)
+
+# Clear Trash Loading
+ClearTrashFrame = Frame(root)
+ClearTrashFrame.pack(side = "bottom", pady = 10)
+ProgressBar1 = Progressbar(ClearTrashFrame, orient = HORIZONTAL, length = 350, mode = 'indeterminate')
+ProgressBar1.pack()
+ClearTrash = Button(ClearTrashFrame, text = lang_load.lang_ClearTrash, command = ClearTrash, style = "Outline.TButton")
+ClearTrash.pack(side = "bottom", padx = 25)
 
 threading.Thread(target = icon.run, daemon = True).start()
 root.config(menu = menubar)

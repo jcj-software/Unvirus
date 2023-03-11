@@ -18,6 +18,8 @@ class lang_load:
         self.lang_Full = "全盘扫描"
         self.lang_Scanned = "扫描完毕"
         self.lang_Stop = "停止"
+        self.lang_ClearTrash = "清理垃圾"
+        self.lang_ClearTrashOver = "垃圾已清理完毕。"
     
     def switchEnglish(self):
         self.lang = "English"
@@ -34,6 +36,8 @@ class lang_load:
         self.lang_Full = "Full Scan"
         self.lang_Scanned = "Scanning completed"
         self.lang_Stop = "Stop"
+        self.lang_ClearTrash = "Trash Clear"
+        self.lang_ClearTrashOver = "Clear trash been."
     
     def _switchEnglish(self, func, icon):
         self.switchEnglish()

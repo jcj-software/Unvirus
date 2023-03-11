@@ -1,0 +1,7 @@
+User Agreement
+copyright  jcj-software
+
+1. Users can modify the software, and the modified version must be open source after being published, including this agreement and the author's name.
+2. Users can use the software, and any consequence caused in the process of using the software has nothing to do with the author.
+3. Users shall not copy the software.
+4. The user shall not sell the software and the modified version of the software by any means.

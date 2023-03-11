@@ -41,27 +41,49 @@ class monitor:
     
     def monitor(self):
         while True:
-            if self.stop == True:
-                break
             test, self.desktop_file = getAllSub(self.desktop)
             test, self.download_file = getAllSub(self.download)
             for filename in self.desktop_file:
+                if self.stop == True:
+                    break
                 if CheckFile(filename):
+                    if self.stop == True:
+                        break
                     if filename not in self.black:
+                        if self.stop == True:
+                            break
                         ask = askyesno('', filename + '\n' + lang_load.lang_FileStatus + lang_load.lang_Malicious + '\n' + lang_load.lang_Process)
+                        if self.stop == True:
+                            break
                         if ask == False:
+                            if self.stop == True:
+                                break
                             self.black.append(filename)
                             with open('black.dat', 'wb') as f:
                                 pickle.dump(self.black, f)
                         elif ask == True:
+                            if self.stop == True:
+                                break
                             os.remove(filename)
             for filename in self.download_file:
+                if self.stop == True:
+                    break
                 if CheckFile(filename):
+                    if self.stop == True:
+                        break
                     if filename not in self.black:
+                        if self.stop == True:
+                            break
                         ask = askyesno('', filename + '\n' + lang_load.lang_FileStatus + lang_load.lang_Malicious + '\n' + lang_load.lang_Process)
+                        if self.stop == True:
+                            break
                         if ask == False:
+                            if self.stop == True:
+                                break
                             self.black.append(filename)
                             with open('black.dat', 'wb') as f:
                                 pickle.dump(self.black, f)
                         elif ask == True:
+                            if self.stop == True:
+                                break
                             os.remove(filename)
